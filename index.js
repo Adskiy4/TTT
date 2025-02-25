@@ -72,6 +72,17 @@ function checkWin(playerSymbol) {
         return true;
     }
 
+    for (let i = 0; i < fieldSize; i++) {
+        if (gameField[i].every(cell => cell === playerSymbol)){
+            for (let j = 0; j < fieldSize; j++){
+            winningCells = gameField.map((_, i) => [j,i]);}
+
+            highlightWinningCells(playerSymbol,winningCells);
+            console.log(1231231);
+            return true;
+        }
+    }
+
     for (let j = 0; j < fieldSize; j++) {
         if (gameField.every(row => row[j] === playerSymbol)){ 
             winningCells = gameField.map((_, i) => [i, j]);
@@ -131,7 +142,7 @@ function makeAIMove() {
         for (let cell of emptyCells) {
             gameField[cell.row][cell.col] = ZERO;
             if (checkWin(ZERO)) {
-                renderSymbolInCell(ZERO, cell.row, cell.col);
+                renderSymbolInCell(ZERO, cell.row, cell.col, 'red');
                 gameOver = true;
                 alert('Победил ИИ');
                 // highlightWinningCells(ZERO);
